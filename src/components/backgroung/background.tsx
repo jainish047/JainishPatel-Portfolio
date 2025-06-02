@@ -74,11 +74,11 @@ function Starfield({ cursor3D }: { cursor3D: THREE.Vector3 | null }) {
   const LENSING_RADIUS = 20;
   const LENSING_STRENGTH = 10;
 
-  useFrame((state, delta) => {
+  useFrame(() => {
     if (!pointsRef.current) return;
 
     // Update star positions based on their velocities (simple drifting)
-    for (let star of stars) {
+    for (const star of stars) {
       star.position.add(star.velocity);
 
       // Wrap stars around bounding box for continuous movement
@@ -313,7 +313,7 @@ function CursorTracker({
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("mouseleave", onMouseLeave);
     };
-  }, [size, camera, setCursor3D]);
+  }, [size, camera, setCursor3D, getCursor3D]);
 
   return null;
 }
